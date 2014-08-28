@@ -1,11 +1,9 @@
 import Sofa
 
-from Compliant import Rigid
-
-
 def createScene(root):
     root.createObject('RequiredPlugin', name='Flexible')
     root.createObject('RequiredPlugin', name='image')
+    root.createObject('RequiredPlugin', name='Compliant')
     root.createObject('RequiredPlugin', name='PreassembledMass')
     root.createObject('VisualStyle', displayFlags="showBehavior" )
    
@@ -57,7 +55,7 @@ def createScene(root):
     strainNode.createObject('MechanicalObject',  template="E331", name="E"  ) 
     strainNode.createObject('GreenStrainMapping', template="F331,E331"    )
     strainNode.createObject('HookeForceField',  template="E331", name="ff", youngModulus="2000.0", poissonRatio="0.2", viscosity="0") 
-		
+                
     massNode = rigidNode.createChild('mass')
     massNode.createObject('TransferFunction',name="densityTF", template="ImageUC,ImageD", inputImage="@../../rasterizer.image", param="0 0 1 0.005")
     massNode.createObject('MechanicalObject', position="@../../merged.position", useMask="0")
